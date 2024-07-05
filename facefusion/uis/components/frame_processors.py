@@ -29,6 +29,7 @@ def update_frame_processors(frame_processors : List[str]) -> gradio.CheckboxGrou
 	facefusion.globals.frame_processors = frame_processors
 	clear_frame_processors_modules()
 	for frame_processor in frame_processors:
+		print('update_frame_processors', frame_processor)
 		frame_processor_module = load_frame_processor_module(frame_processor)
 		if not frame_processor_module.pre_check():
 			return gradio.CheckboxGroup()

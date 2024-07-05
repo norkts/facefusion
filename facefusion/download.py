@@ -17,9 +17,15 @@ if is_macos():
 
 def conditional_download(download_directory_path : str, urls : List[str]) -> None:
 	for url in urls:
+
+		if 'github.com' in url:
+			url = 'https://mirror.ghproxy.com/' + url
+
 		download_file_path = os.path.join(download_directory_path, os.path.basename(url))
 		initial_size = get_file_size(download_file_path)
 		download_size = get_download_size(url)
+		print(url, ",size=", download_size)
+
 		if initial_size < download_size:
 			with tqdm(total = download_size, initial = initial_size, desc = wording.get('downloading'), unit = 'B', unit_scale = True, unit_divisor = 1024, ascii = ' =', disable = facefusion.globals.log_level in [ 'warn', 'error' ]) as progress:
 				subprocess.Popen([ 'curl', '--create-dirs', '--silent', '--insecure', '--location', '--continue-at', '-', '--output', download_file_path, url ])

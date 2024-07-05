@@ -89,7 +89,10 @@ def launch() -> None:
 					ui_layout_module.listen()
 
 	for ui_layout in facefusion.globals.ui_layouts:
+		print(ui_layout)
 		ui_layout_module = load_ui_layout_module(ui_layout)
+		print(ui_layout_module)
+
 		ui_layout_module.run(ui)
 
 

@@ -61,6 +61,7 @@ def update(files : List[File]) -> Tuple[gradio.Audio, gradio.Image]:
 	if has_source_audio or has_source_image:
 		source_audio_path = get_first(filter_audio_paths(file_names))
 		source_image_path = get_first(filter_image_paths(file_names))
+		print('source.update', source_image_path)
 		facefusion.globals.source_paths = file_names
 		return gradio.Audio(value = source_audio_path, visible = has_source_audio), gradio.Image(value = source_image_path, visible = has_source_image)
 	facefusion.globals.source_paths = None

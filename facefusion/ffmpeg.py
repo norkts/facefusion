@@ -85,6 +85,7 @@ def copy_image(target_path : str, temp_image_resolution : str) -> bool:
 	is_webp = filetype.guess_mime(target_path) == 'image/webp'
 	temp_image_compression = 100 if is_webp else 0
 	commands = [ '-i', target_path, '-s', str(temp_image_resolution), '-q:v', str(temp_image_compression), '-y', temp_file_path ]
+	print('ffmpeg.copy_image,commands:', commands)
 	return run_ffmpeg(commands)
 
 
